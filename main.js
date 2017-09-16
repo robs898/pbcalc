@@ -47,10 +47,11 @@ function getBuys(coinList, totalShare, btc_price) {
     coin.buy_btc = coin.buy / btc_price;
     buyList.push(coin.symbol + ' ' + coin.buy_btc);
   })
-  renderBuyList(buyList);
+  outputBuyList(buyList);
 }
 
-function renderBuyList(buyList) {
+function outputBuyList(buyList) {
+  document.getElementById("output").innerHTML = "";
   buyList.forEach(function(coin) {
     var output = document.createElement("li");
     output.innerHTML = coin;
