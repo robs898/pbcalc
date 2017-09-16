@@ -1,22 +1,15 @@
-<!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>pbcalc</title>
+<!--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"> -->
 </head>
 <body>
   <header>
     <h1>pbcalc</h1>
   </header>
-
   CASH <input type="text" id="cash"></input>
-  <button onclick="compute()">Compute</button>
-
+  <button onclick="main()">GO</button>
   <div id="coins">
-    <p>LONGS</p>
-    
+    <h3>LONGS</h3>
     OMG <input value="6" id="OMG"></br>
     XRP <input value="0.3" id="XRP"></br>
     ETC <input value="25" id="ETC"></br>
@@ -30,9 +23,7 @@
     PPY <input value="5" id="PPY"></br>
     FCT <input value="50" id="FCT"></br>
     LKK <input value="0.1" id="LKK"></br>
-    
-    <p>SHORTS</p>
-    
+    <h3>SHORTS</h3>
     ICN <input value="1.25" id="ICN"></br>
     BTS <input value="0.4" id="BTS"></br>
     MAID <input value="0.5" id="MAID"></br>
@@ -48,8 +39,8 @@
     XZC <input value="20" id="XZC"></br> 
     GNT <input value="0.6" id="GNT"></br>
   </div>
- 
   <p id="output"></p>
-  <script src="compute.js" async></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="main.js"></script>
 </body>
 </html>
