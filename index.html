@@ -1,7 +1,4 @@
 <html>
-<head>
-  <link rel="stylesheet" type="text/css" href="index.css">
-</head>
 <body>
   <h2>PB CALC</h2>
   Cash (USD): <input value="100" id="cash"></input>
@@ -37,7 +34,8 @@
     GNT: <input value="0.6" id="GNT"></br>
   </div>
   <p id="output"></p>
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="index.js"></script>
+  <script>
+    function main(){var e=new XMLHttpRequest;e.open("GET","https://api.coinmarketcap.com/v1/ticker/?limit=200",!0),e.onload=function(){e.status>=200&&e.status<400?processData(JSON.parse(e.responseText)):console.log("We reached our target server, but it returned an error")},e.onerror=function(){console.log("There was a connection error of some sort")},e.send()}function processData(e){var t=parseFloat(e[0].price_usd),r=constructCoinList(e);renderBuyList(getBuyListHtml(sortList(getBuys(r,getTotalShare(r),t))),"output")}function constructCoinList(e){var t=[];return getLocalCoins().forEach(function(r){e.forEach(function(e){r.symbol==e.symbol&&(r.name=e.name,r.priceUsd=parseFloat(e.price_usd),r.upper>r.priceUsd&&(r.diff=(r.upper-r.priceUsd)/r.upper*100,t.push(r)))})}),t}function getLocalCoins(){var e=[],t=document.querySelectorAll("#coins input");return Array.prototype.forEach.call(t,function(t){var r={};r.symbol=t.id,r.upper=parseFloat(t.value),e.push(r)}),e}function getTotalShare(e){var t=[];return e.forEach(function(e){t.push(e.diff)}),t.reduce(function(e,t){return e+t},0)}function getBuys(e,t,r){var n=document.getElementById("cash").value,o=[];return e.forEach(function(e){e.share=e.diff/t,e.buy=e.share*n,e.buy_btc=e.buy/r,o.push({key:e.symbol,value:e.buy_btc})}),o}function sortList(e){return e.slice(0).sort(function(e,t){return t.value-e.value})}function getBuyListHtml(e){var t="";return e.forEach(function(e){t+=e.key+" = "+e.value+"<br/>"}),t}function renderBuyList(e,t){document.getElementById(t).innerHTML="",document.getElementById(t).innerHTML=e}
+  </script>
 </body>
 </html>

@@ -1,13 +1,20 @@
-// main functions
-
 function main() {
-  $.ajax({
-    url: "https://api.coinmarketcap.com/v1/ticker/?limit=200",
-    success: function(response) {
-      processData(response);
+  var request = new XMLHttpRequest();
+  request.open('GET', "https://api.coinmarketcap.com/v1/ticker/?limit=200", true);
+  request.onload = function() {
+    if (request.status >= 200 && request.status < 400) {
+      var resp = JSON.parse(request.responseText);
+      processData(resp);
+    } else {
+      console.log('We reached our target server, but it returned an error')
     }
-  });
+  };
+  request.onerror = function() {
+    console.log('There was a connection error of some sort')
+  };
+  request.send();
 }
+
 function processData(cmcCoins) {
   var btcPrice = parseFloat(cmcCoins[0]['price_usd']);
   var coinList = constructCoinList(cmcCoins);
@@ -17,8 +24,6 @@ function processData(cmcCoins) {
   var buyListHtml = getBuyListHtml(buyListSorted);
   renderBuyList(buyListHtml, 'output');
 }
-
-// private functions
 
 function constructCoinList(cmcCoins) {
   var localCoins = getLocalCoins();
@@ -40,10 +45,11 @@ function constructCoinList(cmcCoins) {
 
 function getLocalCoins() {
   var a = [];
-  $('#coins input').each(function() {
+  var coins = document.querySelectorAll('#coins input');
+  Array.prototype.forEach.call(coins, function(coin){
     var d = {};
-    d.symbol = this.id;
-    d.upper = parseFloat(this.value);
+    d.symbol = coin.id;
+    d.upper = parseFloat(coin.value);
     a.push(d);
   });
   return a;
