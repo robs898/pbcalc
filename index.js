@@ -45,7 +45,11 @@ function constructCoinList(cmcCoins) {
 
 function getLocalCoins() {
   var a = [];
-  var coins = document.querySelectorAll('#coins input');
+  if(document.getElementById('longTerm').checked) {
+    var coins = document.querySelectorAll('#longCoins input');
+  } else if(document.getElementById('shortTerm').checked) {
+    var coins = document.querySelectorAll('#shortCoins input');
+  }
   Array.prototype.forEach.call(coins, function(coin){
     var d = {};
     d.symbol = coin.id;
