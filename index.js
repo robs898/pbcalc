@@ -53,7 +53,7 @@ function getLocalCoins() {
   } else if(document.getElementById('shortTerm').checked) {
     var coinTable = document.querySelectorAll('#shortCoins')[0];
   };
-  for (var i = 1, row; row = coinTable.rows[i]; i++) {
+  for (var i = 0, row; row = coinTable.rows[i]; i++) {
     var d = {};
     d.symbol = row.cells[0].innerText;
     d.upper = parseFloat(row.cells[1].innerText);
