@@ -1,6 +1,6 @@
 function main() {
   var request = new XMLHttpRequest();
-  request.open('GET', "https://api.coinmarketcap.com/v1/ticker/?limit=200", true);
+  request.open('GET', "https://api.coinmarketcap.com/v1/ticker/?limit=300", true);
   request.onload = function() {
     if (request.status >= 200 && request.status < 400) {
       var resp = JSON.parse(request.responseText);
@@ -88,7 +88,7 @@ function getBuyList(coinList, totalShare, btcPrice) {
     buyList.push({
       symbol: coin.symbol,
       diff: coin.diff.toFixed(2),
-      value: coin.buy.toFixed(5)
+      value: coin.buy.toFixed(6)
     });
   });
   return buyList;
