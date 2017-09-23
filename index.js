@@ -35,7 +35,10 @@ function constructCoinList(cmcCoins) {
         localCoin.priceUsd = parseFloat(cmcCoin.price_usd);
         if (localCoin.upper > localCoin.priceUsd) {
           localCoin.diff = (100 * ((localCoin.upper - localCoin.priceUsd) / localCoin.upper));
-          coinList.push(localCoin);
+          var diffCut = parseFloat(document.getElementById("diffCut").value);
+          if (localCoin.diff > diffCut) {
+            coinList.push(localCoin);
+          };
         };
       };
     });
