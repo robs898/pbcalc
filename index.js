@@ -34,9 +34,9 @@ function constructCoinList(cmcCoins) {
         localCoin.name = cmcCoin.name;
         localCoin.priceUsd = parseFloat(cmcCoin.price_usd);
         if (localCoin.upper > localCoin.priceUsd) {
-          localCoin.diff = (100 * ((localCoin.upper - localCoin.priceUsd) / localCoin.upper));
-          var diffCut = parseFloat(document.getElementById("diffCut").value);
-          if (localCoin.diff > diffCut) {
+          localCoin.return = (localCoin.upper - localCoin.priceUsd) / localCoin.priceUsd;
+          var returnCut = parseFloat(document.getElementById("returnCut").value);
+          if (localCoin.return > returnCut) {
             coinList.push(localCoin);
           };
         };
@@ -63,11 +63,11 @@ function getLocalCoins() {
 }
 
 function getTotalShare(coinList) {
-  var collectDiffs = [];
+  var collectReturns = [];
   coinList.forEach(function(coin) {
-    collectDiffs.push(coin.diff);
+    collectReturns.push(coin.return);
   });
-  return collectDiffs.reduce(function(a, b) { return a + b; }, 0);
+  return collectReturns.reduce(function(a, b) { return a + b; }, 0);
 }
 
 function getBuyList(coinList, totalShare, btcPrice) {
@@ -79,38 +79,45 @@ function getBuyList(coinList, totalShare, btcPrice) {
   };
   var buyList = [];
   coinList.forEach(function(coin) {
-    coin.share = coin.diff / totalShare;
+    coin.share = coin.return / totalShare;
     if (cashType == 'BTC') {
-      coin.buy = coin.share * cash;
+      coin.buyBtc = coin.share * cash;
     } else if (cashType == 'USD') {
-      coin.buy = (coin.share * cash) / btcPrice;
+      coin.buyBtc = (coin.share * cash) / btcPrice;
     };
+    coin.buyUsd = coin.buyBtc * btcPrice
     buyList.push({
       symbol: coin.symbol,
-      diff: coin.diff.toFixed(2),
-      value: coin.buy.toFixed(6)
+      price: coin.priceUsd,
+      return: coin.return.toFixed(2),
+      buyBtc: coin.buyBtc.toFixed(6),
+      buyUsd: coin.buyUsd.toFixed(2)
     });
   });
   return buyList;
 }
 
 function sortList(list) {
-  return list.slice(0).sort(function(a, b, c) {
-    return b.value - a.value;
+  return list.slice(0).sort(function(a, b, c, d) {
+    return b.buyBtc - a.buyBtc;
   });
 }
 
 function getBuyListHtml(buyListSorted) {
   var html = `
     <th scope="row">Coin</th>
-    <th scope="row">Diff (%)</th>
+    <th scope="row">Price (USD)</th>
+    <th scope="row">ROI</th>
     <th scope="row">Buy (BTC)</th>
+    <th scope="row">Buy (USD)</th>
   `;
   buyListSorted.forEach(function(coin) {
     html += '<tr>'
     html += '<td>' + coin['symbol'] + '</td>';
-    html += '<td>' + coin['diff'] + '</td>';
-    html += '<td>' + coin['value'] + '</td>';
+    html += '<td>' + coin['price'] + '</td>';
+    html += '<td>' + coin['return'] + '</td>';
+    html += '<td>' + coin['buyBtc'] + '</td>';
+    html += '<td>' + coin['buyUsd'] + '</td>';
     html += '</tr>'
   });
   return html;
