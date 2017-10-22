@@ -33,13 +33,13 @@ function constructCoinList(cmcCoins) {
       if (localCoin.symbol == cmcCoin.symbol) {
         localCoin.name = cmcCoin.name;
         localCoin.priceUsd = parseFloat(cmcCoin.price_usd);
-        if (localCoin.upper > localCoin.priceUsd) {
+        //if (localCoin.upper > localCoin.priceUsd) {
           localCoin.return = (localCoin.upper - localCoin.priceUsd) / localCoin.priceUsd;
           var returnCut = parseFloat(document.getElementById("returnCut").value);
-          if (localCoin.return > returnCut) {
+          //if (localCoin.return > returnCut) {
             coinList.push(localCoin);
-          };
-        };
+          //};
+        //};
       };
     });
   });
