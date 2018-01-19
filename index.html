@@ -1,306 +1,126 @@
 <html>
-<head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-</head>
-<body>
-  <div class="container">
-    <h1>PB Calculator</h1>
-    <h3>Parameters</h3>
-    <div class="row">
-      <div class="btn-group" data-toggle="buttons">
-        <label class="btn btn-primary active">
-          <input type="radio" name="cash" id="cashUsd" autocomplete="off" checked> USD
-        </label>
-        <label class="btn btn-primary">
-          <input type="radio" name="cash" id="cashBtc" autocomplete="off"> BTC
-        </label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="btn-group" data-toggle="buttons">
-        <label class="btn btn-primary active">
-          <input type="radio" name="term" id="longTerm" autocomplete="off" checked> Long Term
-        </label>
-        <label class="btn btn-primary">
-          <input type="radio" name="term" id="shortTerm" autocomplete="off"> Short Term
-        </label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-group">
-        <span class="input-group-addon">Cash</span>
-        <input type="text" class="form-control" id="cash" value="100">
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-group">
-        <span class="input-group-addon">ROI cut off</span>
-        <input type="text" class="form-control" id="returnCut" value="0">
-      </div>
-    </div>
-    <div class="row">
-      <button type="button" class="btn btn-primary" onclick="main()">Compute</button>
-    </div>
-    <br>
-    <h3>Coins</h3>
-    <div class="row">
-      <div class=".col-6">
-        <table class="table table-sm">
-          <th scope="row">Long Term</th>
-          <th scope="row">Short Term</th>
-          <tr>
-            <td>
-              <table id="longCoins">
-                <tr>
-                  <td>BTC</td>
-                  <td>
-                    <input type="text" class="form-control" id="BTC" value="25000">
-                  </td>
-                </tr>
-                <tr>
-                  <td>ETH</td>
-                  <td>
-                    <input type="text" class="form-control" id="ETH" value="400">
-                  </td>
-                </tr>
-                <tr>
-                  <td>ZEN</td>
-                  <td>
-                    <input type="text" class="form-control" id="ZEN" value="40">
-                  </td>
-                </tr>
-                <tr>
-                  <td>XMR</td>
-                  <td>
-                    <input type="text" class="form-control" id="XMR" value="60">
-                  </td>
-                </tr>
-                  <td>STEEM</td>
-                  <td>
-                    <input type="text" class="form-control" id="STEEM" value="3.50">
-                  </td>
-                </tr>
-                <tr>
-                  <td>LKK</td>
-                  <td>
-                    <input type="text" class="form-control" id="LKK" value="0.1">
-                  </td>
-                </tr>
-                <tr>
-                  <td>NEO</td>
-                  <td>
-                    <input type="text" class="form-control" id="NEO" value="22">
-                  </td>
-                </tr>
-                <tr>
-                  <td>PPY</td>
-                  <td>
-                    <input type="text" class="form-control" id="PPY" value="0">
-                  </td>
-                </tr>
-                <tr>
-                  <td>FCT</td>
-                  <td>
-                    <input type="text" class="form-control" id="FCT" value="50">
-                  </td>
-                </tr>
-                <tr>
-                  <td>STORJ</td>
-                  <td>
-                    <input type="text" class="form-control" id="STORJ" value="1">
-                  </td>
-                </tr>
-                <tr>
-                  <td>ETC</td>
-                  <td>
-                    <input type="text" class="form-control" id="ETC" value="25">
-                  </td>
-                </tr>
-                <tr>
-                  <td>XRP</td>
-                  <td>
-                    <input type="text" class="form-control" id="XRP" value="0.3">
-                  </td>
-                </tr>
-                <tr>
-                  <td>OMG</td>
-                  <td>
-                    <input type="text" class="form-control" id="OMG" value="20">
-                  </td>
-                </tr>
-                <tr>
-                  <td>GAS</td>
-                  <td>
-                    <input type="text" class="form-control" id="GAS" value="45">
-                  </td>
-                </tr>
-                <tr>
-                  <td>DASH</td>
-                  <td>
-                    <input type="text" class="form-control" id="DASH" value="800">
-                  </td>
-                </tr>
-                <tr>
-                  <td>CND</td>
-                  <td>
-                    <input type="text" class="form-control" id="CND" value="0.3">
-                  </td>
-                </tr>
-              </table>
-            </td>
-            <td>
-              <table id="shortCoins">
-                <tr>
-                  <td>ICN</td>
-                  <td>
-                    <input type="text" class="form-control" id="ICN" value="2">
-                  </td>
-                </tr>
-                <tr>
-                  <td>XEM</td>
-                  <td>
-                    <input type="text" class="form-control" id="XEM" value="0.30">
-                  </td>
-                </tr>
-                <tr>
-                  <td>WINGS</td>
-                  <td>
-                    <input type="text" class="form-control" id="WINGS" value="1">
-                  </td>
-                </tr>
-                <tr>
-                  <td>LSK</td>
-                  <td>
-                    <input type="text" class="form-control" id="LSK" value="1.50">
-                  </td>
-                </tr>
-                <tr>
-                  <td>WAVES</td>
-                  <td>
-                    <input type="text" class="form-control" id="WAVES" value="4">
-                  </td>
-                </tr>
-                <tr>
-                  <td>BAT</td>
-                  <td>
-                    <input type="text" class="form-control" id="BAT" value="0.35">
-                  </td>
-                </tr>
-                <tr>
-                  <td>BTS</td>
-                  <td>
-                    <input type="text" class="form-control" id="BTS" value="0.4">
-                  </td>
-                </tr>
-                <tr>
-                  <td>SYS</td>
-                  <td>
-                    <input type="text" class="form-control" id="SYS" value="0.3">
-                  </td>
-                </tr>
-                <tr>
-                  <td>XZC</td>
-                  <td>
-                    <input type="text" class="form-control" id="XZC" value="20">
-                  </td>
-                </tr>
-                <tr>
-                  <td>GNT</td>
-                  <td>
-                    <input type="text" class="form-control" id="GNT" value="0.6">
-                  </td>
-                </tr>
-                <tr>
-                  <td>MAID</td>
-                  <td>
-                    <input type="text" class="form-control" id="MAID" value="0.5">
-                  </td>
-                </tr>
-                <tr>
-                  <td>ANT</td>
-                  <td>
-                    <input type="text" class="form-control" id="ANT" value="8">
-                  </td>  
-                </tr>          
-                <tr>
-                  <td>BCH</td>
-                  <td>
-                    <input type="text" class="form-control" id="BCH" value="1400">
-                  </td>
-                </tr>
-                <tr>
-                  <td>EOS</td>
-                  <td>
-                    <input type="text" class="form-control" id="EOS" value="1.6">
-                  </td>
-                </tr>
-                <tr>
-                  <td>BNB</td>
-                  <td>
-                    <input type="text" class="form-control" id="BNB" value="2.5">
-                  </td>
-                </tr>
-                <tr>
-                  <td>XLM</td>
-                  <td>
-                    <input type="text" class="form-control" id="XLM" value="0.24">
-                  </td>
-                </tr>
-                <tr>
-                  <td>SALT</td>
-                  <td>
-                    <input type="text" class="form-control" id="SALT" value="20">
-                  </td>
-                </tr>
-                <tr>
-                  <td>AION</td>
-                  <td>
-                    <input type="text" class="form-control" id="AION" value="10">
-                  </td>
-                </tr>
-                <tr>
-                  <td>DRGN</td>
-                  <td>
-                    <input type="text" class="form-control" id="DRGN" value="5">
-                  </td>
-                </tr>
-                <tr>
-                  <td>WAX</td>
-                  <td>
-                    <input type="text" class="form-control" id="WAX" value="1.40">
-                  </td>
-                </tr>
-                <tr>
-                  <td>QTUM</td>
-                  <td>
-                    <input type="text" class="form-control" id="QTUM" value="65">
-                  </td>
-                </tr>
-                <tr>
-                  <td>ADA</td>
-                  <td>
-                    <input type="text" class="form-control" id="ADA" value="0.9">
-                  </td>
-                </tr>
-                <tr>
-                  <td>POWR</td>
-                  <td>
-                    <input type="text" class="form-control" id="POWR" value="0.85">
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-        </table>
-      </div>
-      <div class=".col-6">
-        <table id="buyTable" class="table table-hover"></table>
-      </div>
-    </div>
-  </div>
-  <script src="index.js"></script>
-</body>
+<table id="table"></table>
+<script>
+function main() {
+  var request = new XMLHttpRequest();
+  request.open('GET', "https://api.coinmarketcap.com/v1/ticker/?limit=300", true);
+  request.onload = function() {
+    if (request.status >= 200 && request.status < 400) {
+      var resp = JSON.parse(request.responseText);
+      processData(resp);
+    } else {
+      console.log('We reached our target server, but it returned an error')
+    }
+  };
+  request.onerror = function() {
+    console.log('There was a connection error of some sort')
+  };
+  request.send();
+}
+
+function processData(cmcCoins) {
+  var pbCoins = {
+    BTC: 25000,
+    ETH: 400,
+    ZEN: 40,
+    XMR: 60,
+    STEEM: 3.5,
+    LKK: 0.1,
+    NEO: 22,
+    FCT: 50,
+    STORJ: 1,
+    ETC: 25,
+    XRP: 0.3,
+    OMG: 20,
+    GAS: 45,
+    DASH: 800,
+    CND: 0.3,
+    ICN: 2,
+    XEM: 0.3,
+    WINGS: 1,
+    LSK: 1.5,
+    WAVES: 4,
+    BAT: 0.35,
+    BTS: 0.4,
+    SYS: 0.3,
+    XZC: 20,
+    GNT: 0.6,
+    MAID: 0.5,
+    ANT: 8,
+    BCH: 1400,
+    EOS: 1.6,
+    BNB: 2.5,
+    XLM: 0.24,
+    SALT: 20,
+    AION: 10,
+    DRGN: 5,
+    WAX: 1.4,
+    QTUM: 65,
+    ADA: 0.9,
+    POWER: 0.85,
+  };
+  var btcPrice = parseFloat(cmcCoins[0]['price_usd']);
+  var coinList = constructCoinList(cmcCoins, pbCoins);
+  var buyList = getBuyList(coinList, btcPrice);
+  var buyListSorted = sortList(buyList);
+  var buyListHtml = getBuyListHtml(buyListSorted);
+  renderHtml(buyListHtml, 'table');
+}
+
+function constructCoinList(cmcCoins, pbCoins) {
+  var coinList = [];
+  for(var pbCoin in pbCoins) {
+    cmcCoins.forEach(function(cmcCoin) {
+      if (pbCoin == cmcCoin.symbol) {
+        c = {};
+        c.symbol = pbCoin;
+        c.priceUsd = parseFloat(cmcCoin.price_usd);
+        c.roi = pbCoins[pbCoin] / c.priceUsd;
+        coinList.push(c);
+      };
+    });
+  };
+  return coinList
+}
+
+function getBuyList(coinList, btcPrice) {
+  var buyList = [];
+  coinList.forEach(function(coin) {
+    buyList.push({
+      symbol: coin.symbol,
+      price: coin.priceUsd,
+      roi: coin.roi.toFixed(2),
+    });
+  });
+  return buyList;
+}
+
+function sortList(list) {
+  return list.slice(0).sort(function(a, b, c, d) {
+    return b.roi - a.roi;
+  });
+}
+
+function getBuyListHtml(buyListSorted) {
+  var html = `
+    <th scope="row">Coin</th>
+    <th scope="row">Price $</th>
+    <th scope="row">ROI</th>
+  `;
+  buyListSorted.forEach(function(coin) {
+    html += '<tr>'
+    html += '<td>' + coin['symbol'] + '</td>';
+    html += '<td>' + coin['price'] + '</td>';
+    html += '<td>' + coin['roi'] + '</td>';
+    html += '</tr>'
+  });
+  return html;
+}
+
+function renderHtml(html, id) {
+  document.getElementById(id).innerHTML = '';
+  document.getElementById(id).innerHTML = html;
+}
+window.onload = main;
+</script>
 </html>
