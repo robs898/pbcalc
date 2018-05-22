@@ -116,7 +116,7 @@ function getBuyListHtml(buyListSorted) {
   buyCoins = ['BTC', 'FCT', 'STORJ', 'ETC', 'DASH', 'OMG', 'GAS', 'ZEN', 'CND', 'AION', 'GTO', 'QSP', 'STEEM'];
   buyListSorted.forEach(function(coin) {
     html += '<tr>';
-    if (coin['symbol'] in buyCoins) {
+    if (buyCoins.includes(coin['symbol'])) {
       html += '<td>' + '<strong>' + coin['symbol'] + '</strong>' + '</td>';
       html += '<td>' + '<strong>' + coin['price'] + '</strong>' + '</td>';
       html += '<td>' + '<strong>' + coin['roi'] + '</strong>' + '</td>';
