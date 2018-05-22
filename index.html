@@ -60,6 +60,7 @@ function processData(cmcCoins) {
     ADA: 0.9,
     POWR: 0.85,
     VEN: 5,
+    BNT: 5,
     LTC: 175,
     ICX: 5.5,
     QSP: 0.25,
@@ -112,11 +113,18 @@ function getBuyListHtml(buyListSorted) {
     <th scope="row">Price $</th>
     <th scope="row">ROI</th>
   `;
+  buyCoins = ['BTC', 'FCT', 'STORJ', 'ETC', 'DASH', 'OMG', 'GAS', 'ZEN', 'CND', 'AION', 'GTO', 'QSP', 'STEEM'];
   buyListSorted.forEach(function(coin) {
-    html += '<tr>'
-    html += '<td>' + coin['symbol'] + '</td>';
-    html += '<td>' + coin['price'] + '</td>';
-    html += '<td>' + coin['roi'] + '</td>';
+    html += '<tr>';
+    if (coin['symbol'] in buyCoins) {
+      html += '<td>' + '<strong>' + coin['symbol'] + '</strong>' + '</td>';
+      html += '<td>' + '<strong>' + coin['price'] + '</strong>' + '</td>';
+      html += '<td>' + '<strong>' + coin['roi'] + '</strong>' + '</td>';
+    } else {
+      html += '<td>' + '<strike>' + coin['symbol'] + '</strike>' + '</td>';
+      html += '<td>' + '<strike>' + coin['price'] + '</strike>' + '</td>';
+      html += '<td>' + '<strike>' + coin['roi'] + '</strike>' + '</td>';
+    };
     html += '</tr>'
   });
   return html;
