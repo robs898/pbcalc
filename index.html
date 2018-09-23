@@ -64,6 +64,7 @@ function processData(cmcCoins) {
     ICX: 5.5,
     QSP: 0.25,
     FUN: 0.04,
+    ZRX: 0.75,
   };
   var btcPrice = parseFloat(cmcCoins[0]['price_usd']);
   var coinList = constructCoinList(cmcCoins, pbCoins);
@@ -113,7 +114,7 @@ function getBuyListHtml(buyListSorted) {
     <th scope="row">Price $</th>
     <th scope="row">ROI</th>
   `;
-  buyCoins = ['BTC', 'VET', 'NEO', 'XLM', 'FUN', 'FCT', 'STORJ', 'ETC', 'DASH', 'OMG', 'GAS', 'ETH', 'CND', 'AION', 'GTO', 'QSP', 'STEEM'];
+  buyCoins = ['BTC', 'ZRX', 'VET', 'NEO', 'XLM', 'FUN', 'FCT', 'STORJ', 'ETC', 'DASH', 'OMG', 'GAS', 'ETH', 'CND', 'AION', 'GTO', 'QSP', 'STEEM'];
   buyListSorted.forEach(function(coin) {
     html += '<tr>';
     if (buyCoins.includes(coin['symbol'])) {
