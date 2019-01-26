@@ -22,25 +22,28 @@ function processData(cmcCoins) {
   var pbCoins = {
     BTC: 25000,
     ETH: 550,
-    GTO: 0.8,
     XMR: 60,
+    ETC: 25,
+    DASH: 800,
+    XRP: 0.3,
+    CND: 0.3,
+    GTO: 0.8,
+    XLM: 0.35,
+    VET: 0.016,
+    ZRX: 0.75,
+    BAT: 0.35,
     STEEM: 3.5,
     LKK: 0.1,
     NEO: 22,
     FCT: 50,
     STORJ: 1,
-    ETC: 25,
-    XRP: 0.3,
     OMG: 20,
     GAS: 45,
-    DASH: 800,
-    CND: 0.3,
     ICN: 2,
     XEM: 0.3,
     WINGS: 1,
     LSK: 1.5,
     WAVES: 4,
-    BAT: 0.35,
     BTS: 0.4,
     SYS: 0.3,
     XZC: 20,
@@ -50,7 +53,6 @@ function processData(cmcCoins) {
     BCH: 1400,
     EOS: 1.6,
     BNB: 2.5,
-    XLM: 0.35,
     SALT: 20,
     AION: 10,
     DRGN: 5,
@@ -58,13 +60,12 @@ function processData(cmcCoins) {
     QTUM: 65,
     ADA: 0.9,
     POWR: 0.85,
-    VET: 0.016,
     BNT: 5,
     LTC: 175,
     ICX: 5.5,
     QSP: 0.25,
     FUN: 0.04,
-    ZRX: 0.75,
+
   };
   var btcPrice = parseFloat(cmcCoins[0]['price_usd']);
   var coinList = constructCoinList(cmcCoins, pbCoins);
@@ -114,7 +115,7 @@ function getBuyListHtml(buyListSorted) {
     <th scope="row">Price $</th>
     <th scope="row">ROI</th>
   `;
-  buyCoins = ['BTC', 'ZRX', 'VET', 'NEO', 'XLM', 'FUN', 'FCT', 'STORJ', 'ETC', 'DASH', 'OMG', 'GAS', 'ETH', 'CND', 'AION', 'GTO', 'QSP', 'STEEM'];
+  buyCoins = ['BTC', 'ETH', 'XMR', 'ETC', 'DASH', 'XRP', 'CND', 'AION', 'GTO', 'ZRX', 'XLM', 'VET'];
   buyListSorted.forEach(function(coin) {
     html += '<tr>';
     if (buyCoins.includes(coin['symbol'])) {
