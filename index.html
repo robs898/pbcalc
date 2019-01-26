@@ -51,7 +51,7 @@ function processData(cmcCoins) {
     MAID: 0.5,
     ANT: 8,
     BCH: 1400,
-    EOS: 1.6,
+    EOS: 20,
     BNB: 2.5,
     SALT: 20,
     AION: 10,
@@ -65,7 +65,6 @@ function processData(cmcCoins) {
     ICX: 5.5,
     QSP: 0.25,
     FUN: 0.04,
-
   };
   var btcPrice = parseFloat(cmcCoins[0]['price_usd']);
   var coinList = constructCoinList(cmcCoins, pbCoins);
@@ -115,18 +114,19 @@ function getBuyListHtml(buyListSorted) {
     <th scope="row">Price $</th>
     <th scope="row">ROI</th>
   `;
-  buyCoins = ['BTC', 'ETH', 'XMR', 'ETC', 'DASH', 'XRP', 'CND', 'AION', 'GTO', 'ZRX', 'XLM', 'VET'];
+  buyCoins = ['BTC','BAT','DASH','EOS','ETH','XMR','XLM'];
   buyListSorted.forEach(function(coin) {
     html += '<tr>';
     if (buyCoins.includes(coin['symbol'])) {
       html += '<td>' + '<strong>' + coin['symbol'] + '</strong>' + '</td>';
       html += '<td>' + '<strong>' + coin['price'] + '</strong>' + '</td>';
       html += '<td>' + '<strong>' + coin['roi'] + '</strong>' + '</td>';
-    } else {
-      html += '<td>' + '<strike>' + coin['symbol'] + '</strike>' + '</td>';
-      html += '<td>' + '<strike>' + coin['price'] + '</strike>' + '</td>';
-      html += '<td>' + '<strike>' + coin['roi'] + '</strike>' + '</td>';
     };
+    // else {
+    //   html += '<td>' + '<strike>' + coin['symbol'] + '</strike>' + '</td>';
+    //   html += '<td>' + '<strike>' + coin['price'] + '</strike>' + '</td>';
+    //   html += '<td>' + '<strike>' + coin['roi'] + '</strike>' + '</td>';
+    // };
     html += '</tr>'
   });
   return html;
