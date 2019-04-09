@@ -65,6 +65,7 @@ function processData(cmcCoins) {
     ICX: 5.5,
     QSP: 0.25,
     FUN: 0.04,
+    MKR: 800,
   };
   var btcPrice = parseFloat(cmcCoins[0]['price_usd']);
   var coinList = constructCoinList(cmcCoins, pbCoins);
@@ -110,14 +111,14 @@ function sortList(list) {
 
 function getBuyListHtml(buyListSorted) {
   var html = '';
-  buyCoins = ['BTC','BAT','DASH','EOS','ETH','XMR','XLM'];
+  //buyCoins = ['BTC','BAT','DASH','EOS','ETH','XMR','XLM'];
   buyListSorted.forEach(function(coin) {
     html += '<tr>';
-    if (buyCoins.includes(coin['symbol'])) {
+    //if (buyCoins.includes(coin['symbol'])) {
       html += '<td>' + coin['symbol']  + '</td>';
       html += '<td>' + coin['price']  + '</td>';
       html += '<td>' + coin['roi']  + '</td>';
-    };
+    //};
     // else {
     //   html += '<td>' + '<strike>' + coin['symbol'] + '</strike>' + '</td>';
     //   html += '<td>' + '<strike>' + coin['price'] + '</strike>' + '</td>';
