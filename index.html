@@ -21,52 +21,31 @@ function main() {
 function processData(cmcCoins) {
   var pbCoins = {
     BTC: 25000,
-    ETH: 250,
-    XMR: 55,
+    ETH: 550,
+    NEO: 22,
+    GAS: 45,
+    XMR: 60,
+    STORJ: 1,
     ETC: 25,
-    DASH: 450,
+    DASH: 800,
+    FCT: 50,
     XRP: 0.3,
+    OMG: 20,
     CND: 0.3,
+    AION: 10,
     GTO: 0.8,
-    XLM: 0.42,
+    QSP: 0.25,
+    FUN: 0.04,
+    STEEM: 3.5,
+    XLM: 0.35,
     VET: 0.016,
     ZRX: 0.75,
     BAT: 0.27,
-    STEEM: 3.5,
-    LKK: 0.1,
-    NEO: 22,
-    FCT: 50,
-    STORJ: 1,
-    OMG: 20,
-    GAS: 45,
-    ICN: 2,
-    XEM: 0.3,
-    WINGS: 1,
-    LSK: 1.5,
-    WAVES: 4,
-    BTS: 0.4,
-    SYS: 0.3,
-    XZC: 20,
-    GNT: 0.6,
-    MAID: 0.5,
-    ANT: 8,
-    BCH: 1400,
-    EOS: 11,
-    BNB: 2.5,
-    SALT: 20,
-    AION: 10,
-    DRGN: 5,
-    WAX: 1.4,
-    QTUM: 65,
-    ADA: 0.9,
-    POWR: 0.85,
-    BNT: 5,
-    LTC: 175,
-    ICX: 5.5,
-    QSP: 0.25,
-    FUN: 0.04,
+    RCN: 0.03,
     MKR: 800,
+    DGD: 24,
     LINK: 1,
+    TNT: 0.04,
   };
   var btcPrice = parseFloat(cmcCoins[0]['price_usd']);
   var coinList = constructCoinList(cmcCoins, pbCoins);
@@ -112,19 +91,11 @@ function sortList(list) {
 
 function getBuyListHtml(buyListSorted) {
   var html = '';
-  //buyCoins = ['BTC','BAT','DASH','EOS','ETH','XMR','XLM'];
   buyListSorted.forEach(function(coin) {
     html += '<tr>';
-    //if (buyCoins.includes(coin['symbol'])) {
-      html += '<td>' + coin['symbol']  + '</td>';
-      html += '<td>' + coin['price']  + '</td>';
-      html += '<td>' + coin['roi']  + '</td>';
-    //};
-    // else {
-    //   html += '<td>' + '<strike>' + coin['symbol'] + '</strike>' + '</td>';
-    //   html += '<td>' + '<strike>' + coin['price'] + '</strike>' + '</td>';
-    //   html += '<td>' + '<strike>' + coin['roi'] + '</strike>' + '</td>';
-    // };
+    html += '<td>' + coin['symbol']  + '</td>';
+    html += '<td>' + coin['price']  + '</td>';
+    html += '<td>' + coin['roi']  + '</td>';
     html += '</tr>'
   });
   return html;
