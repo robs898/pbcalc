@@ -6,16 +6,10 @@ function main() {
   request.open('GET', "https://api.coinmarketcap.com/v1/ticker/?limit=300", true);
   request.onload = function() {
     if (request.status >= 200 && request.status < 400) {
-      var resp = JSON.parse(request.responseText);
-      processData(resp);
-    } else {
-      console.log('We reached our target server, but it returned an error')
+      processData(JSON.parse(request.responseText))
     }
-  };
-  request.onerror = function() {
-    console.log('There was a connection error of some sort')
-  };
-  request.send();
+  }
+  request.send()
 }
 
 function processData(cmcCoins) {
